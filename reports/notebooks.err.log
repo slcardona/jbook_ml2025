@@ -26,10 +26,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-import pandas as pd
-
-df = pd.read_csv(os.path.join(path, "vehicles.csv"))
-df.head()
-
+['def _read_header_cols(p):', "    return pd.read_csv(p, nrows=0, engine='python', on_bad_lines='skip',", "                       encoding='utf-8', encoding_errors='ignore').columns.tolist()", '', 'orig_cols = _read_header_cols(DATA_PATH)']
+...
+['        break', '', 'df = pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()', 'print("Loaded df:", df.shape)', 'df.head()']
 -------------------
 
