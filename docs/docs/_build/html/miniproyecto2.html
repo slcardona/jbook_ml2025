@@ -1,0 +1,1653 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Miniproyecto 2: Predicción del precio y clasificación de autos usados &#8212; Miniproyecto 2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'miniproyecto2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Miniproyecto 2 - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Miniproyecto 2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Miniproyecto 2: Predicción del precio y clasificación de autos usados</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/slcardona/jbook_ml2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/slcardona/jbook_ml2025/issues/new?title=Issue%20on%20page%20%2Fminiproyecto2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/miniproyecto2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Miniproyecto 2: Predicción del precio y clasificación de autos usados</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-1-carga-y-exploracion-de-datos">1) Sección 1. Carga y exploración de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-paquetes">Instalación de paquetes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-config">Imports &amp; config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros">Parámetros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-caracteristicas-highdemand">2) Ingeniería de características (HighDemand)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-preliminar-de-datos-y-creacion-de-la-variable-binaria-highdemand">Limpieza preliminar de datos y creación de la variable binaria: HighDemand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-datos-price">Exploración de datos - Price</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-de-20000-datos-y-splits-training-testing">Subset de 20000 datos y splits (Training - Testing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-3-modelos">3) Sección 3. Modelos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-imputacion-de-datos-ohe-scaler">Preprocesamiento (imputación de datos + OHE + scaler)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipelines-gridsearchcv">Pipelines &amp; GridSearchCV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-regresion">Evaluación - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-clasificacion">Evaluación - Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-imputacion-de-datos-ohe-maxabsscaler-pipeline-y-gridsearchcv">Preprocesamiento (Imputación de datos + OHE + MaxAbsScaler), Pipeline y GridSearchCV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-regresion">Training - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Evaluación - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-clasificacion">Training - Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Evaluación - Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-4-evaluacion-y-metricas">Sección 4. Evaluación y Métricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-5-conclusiones">Sección 5. Conclusiones</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="miniproyecto-2-prediccion-del-precio-y-clasificacion-de-autos-usados">
+<h1>Miniproyecto 2: Predicción del precio y clasificación de autos usados<a class="headerlink" href="#miniproyecto-2-prediccion-del-precio-y-clasificacion-de-autos-usados" title="Link to this heading">#</a></h1>
+<p><strong>Created:</strong> 2025-08-11</p>
+<p>En este notebook se encuentran las siguientes sesiones:</p>
+<ul class="simple">
+<li><p>Sección 1. Carga y exploración de los datos.</p></li>
+<li><p>Sección 2. Ingeniería de características (HighDemand)</p></li>
+<li><p>Sección 3. Modelos:</p></li>
+<li><p>Definición de pipelines</p></li>
+<li><p>GridSearchCV con validación cruzada</p></li>
+<li><p>Sección 4. Evaluación con métricas y gráficas.</p></li>
+<li><p>Sección 5. Conclusiones</p></li>
+</ul>
+<section id="seccion-1-carga-y-exploracion-de-datos">
+<h2>1) Sección 1. Carga y exploración de datos<a class="headerlink" href="#seccion-1-carga-y-exploracion-de-datos" title="Link to this heading">#</a></h2>
+</section>
+<section id="instalacion-de-paquetes">
+<h2>Instalación de paquetes<a class="headerlink" href="#instalacion-de-paquetes" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install -q --disable-pip-version-check kagglehub pandas numpy scikit-learn matplotlib
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="imports-config">
+<h2>Imports &amp; config<a class="headerlink" href="#imports-config" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">train_test_split</span><span class="p">,</span> <span class="n">StratifiedShuffleSplit</span><span class="p">,</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">KFold</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">OneHotEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">,</span>
+    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span>
+    <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">RocCurveDisplay</span>
+<span class="p">)</span>
+
+<span class="n">RANDOM_STATE</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Python:&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sklearn</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pandas:&#39;</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;scikit-learn:&#39;</span><span class="p">,</span> <span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python: 3.9.23
+pandas: 2.3.1
+scikit-learn: 1.6.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="parametros">
+<h2>Parámetros<a class="headerlink" href="#parametros" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TOTAL_SUBSET</span> <span class="o">=</span> <span class="mi">20_000</span>
+<span class="n">CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">150_000</span>
+<span class="n">ROW_CAP</span>    <span class="o">=</span> <span class="mi">200_000</span>
+
+<span class="n">USE_THESE</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">,</span><span class="s1">&#39;url&#39;</span><span class="p">,</span><span class="s1">&#39;region&#39;</span><span class="p">,</span><span class="s1">&#39;region_url&#39;</span><span class="p">,</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;manufacturer&#39;</span><span class="p">,</span><span class="s1">&#39;model&#39;</span><span class="p">,</span><span class="s1">&#39;condition&#39;</span><span class="p">,</span><span class="s1">&#39;cylinders&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fuel&#39;</span><span class="p">,</span><span class="s1">&#39;odometer&#39;</span><span class="p">,</span><span class="s1">&#39;title_status&#39;</span><span class="p">,</span><span class="s1">&#39;transmission&#39;</span><span class="p">,</span><span class="s1">&#39;VIN&#39;</span><span class="p">,</span><span class="s1">&#39;drive&#39;</span><span class="p">,</span><span class="s1">&#39;size&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;paint_color&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;image_url&#39;</span><span class="p">,</span><span class="s1">&#39;description&#39;</span><span class="p">,</span><span class="s1">&#39;county&#39;</span><span class="p">,</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;long&#39;</span><span class="p">,</span><span class="s1">&#39;posting_date&#39;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="carga-de-datos">
+<h2>Carga de datos<a class="headerlink" href="#carga-de-datos" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import kagglehub</span>
+<span class="c1"># path = kagglehub.dataset_download(&quot;austinreese/craigslist-carstrucks-data&quot;)</span>
+
+<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">&#39;path&#39;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+        <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">rglob</span><span class="p">(</span><span class="s2">&quot;vehicles.csv&quot;</span><span class="p">)))</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">DATA_PATH</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="c1"># Set your local path here if needed</span>
+    <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;C:\Users\Laura\.cache\kagglehub\datasets\austinreese\craigslist-carstrucks-data\versions\10\vehicles.csv&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DATA_PATH:&quot;</span><span class="p">,</span> <span class="n">DATA_PATH</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DATA_PATH: C:\Users\Laura\.cache\kagglehub\datasets\austinreese\craigslist-carstrucks-data\versions\10\vehicles.csv
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ingenieria-de-caracteristicas-highdemand">
+<h2>2) Ingeniería de características (HighDemand)<a class="headerlink" href="#ingenieria-de-caracteristicas-highdemand" title="Link to this heading">#</a></h2>
+</section>
+<section id="limpieza-preliminar-de-datos-y-creacion-de-la-variable-binaria-highdemand">
+<h2>Limpieza preliminar de datos y creación de la variable binaria: HighDemand<a class="headerlink" href="#limpieza-preliminar-de-datos-y-creacion-de-la-variable-binaria-highdemand" title="Link to this heading">#</a></h2>
+<p>Transformación de la variable <em>cylinders</em> a <em>cylinders_num</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">_read_header_cols</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span><span class="p">,</span>
+                       <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">encoding_errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">orig_cols</span> <span class="o">=</span> <span class="n">_read_header_cols</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="p">)</span>
+
+<span class="c1"># Global price median (first pass)</span>
+<span class="n">price_parts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">==</span><span class="s1">&#39;price&#39;</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">encoding_errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
+    <span class="n">chunksize</span><span class="o">=</span><span class="n">CHUNK_SIZE</span>
+<span class="p">):</span>
+    <span class="n">price_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">),</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">))</span>
+<span class="n">price_median_global</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">price_parts</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Global median(price):&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">price_median_global</span><span class="p">))</span>
+
+<span class="c1"># Second pass</span>
+<span class="n">parts</span><span class="p">,</span> <span class="n">total</span> <span class="o">=</span> <span class="p">[],</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+    <span class="n">DATA_PATH</span><span class="p">,</span>
+    <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">encoding_errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
+    <span class="n">chunksize</span><span class="o">=</span><span class="n">CHUNK_SIZE</span>
+<span class="p">):</span>
+    <span class="n">keep</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">USE_THESE</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ch</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[</span><span class="n">keep</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;odometer&#39;</span><span class="p">,</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;long&#39;</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">ch</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">ch</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ch</span><span class="p">[</span><span class="n">c</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;cylinders&#39;</span> <span class="ow">in</span> <span class="n">ch</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">ch</span><span class="p">[</span><span class="s1">&#39;cylinders_num&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[</span><span class="s1">&#39;cylinders&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(\d+)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[(</span><span class="n">ch</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)]</span>
+    <span class="k">if</span> <span class="s1">&#39;year&#39;</span> <span class="ow">in</span> <span class="n">ch</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">ch</span> <span class="o">=</span> <span class="n">ch</span><span class="p">[(</span><span class="n">ch</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">())</span> <span class="o">|</span> <span class="p">((</span><span class="n">ch</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1990</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">ch</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">2025</span><span class="p">))]</span>
+
+    <span class="n">ch</span><span class="p">[</span><span class="s1">&#39;HighDemand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">ch</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">price_median_global</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int8&#39;</span><span class="p">)</span>
+
+    <span class="n">parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+    <span class="n">total</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ROW_CAP</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">total</span> <span class="o">&gt;=</span> <span class="n">ROW_CAP</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">parts</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">if</span> <span class="n">parts</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loaded df:&quot;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Global price median (first pass)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">price_parts</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">DATA_PATH</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">==</span><span class="s1">&#39;price&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s1">&#39;skip&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">encoding_errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">chunksize</span><span class="o">=</span><span class="n">CHUNK_SIZE</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span>     <span class="n">price_parts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">ch</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">),</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">price_median_global</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">price_parts</span><span class="p">,</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">skipna</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_cpuenv\lib\site-packages\pandas\io\parsers\readers.py:1843,</span> in <span class="ni">TextFileReader.__next__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1841</span> <span class="k">def</span><span class="w"> </span><span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrame</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1842</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1843</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_chunk</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1844</span>     <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1845</span>         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_cpuenv\lib\site-packages\pandas\io\parsers\readers.py:1985,</span> in <span class="ni">TextFileReader.get_chunk</span><span class="nt">(self, size)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1983</span>         <span class="k">raise</span> <span class="ne">StopIteration</span>
+<span class="g g-Whitespace">   </span><span class="mi">1984</span>     <span class="n">size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">nrows</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_currow</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1985</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_cpuenv\lib\site-packages\pandas\io\parsers\readers.py:1923,</span> in <span class="ni">TextFileReader.read</span><span class="nt">(self, nrows)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1916</span> <span class="n">nrows</span> <span class="o">=</span> <span class="n">validate_integer</span><span class="p">(</span><span class="s2">&quot;nrows&quot;</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1917</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1918</span>     <span class="c1"># error: &quot;ParserBase&quot; has no attribute &quot;read&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1919</span>     <span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1920</span>         <span class="n">index</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1921</span>         <span class="n">columns</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1922</span>         <span class="n">col_dict</span><span class="p">,</span>
+<span class="ne">-&gt; </span><span class="mi">1923</span>     <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span><span class="o">.</span><span class="n">read</span><span class="p">(</span>  <span class="c1"># type: ignore[attr-defined]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1924</span>         <span class="n">nrows</span>
+<span class="g g-Whitespace">   </span><span class="mi">1925</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1926</span> <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1927</span>     <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_cpuenv\lib\site-packages\pandas\io\parsers\python_parser.py:252,</span> in <span class="ni">PythonParser.read</span><span class="nt">(self, rows)</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span> <span class="k">def</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">247</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">248</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span>     <span class="n">Index</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Hashable</span><span class="p">]</span> <span class="o">|</span> <span class="n">MultiIndex</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span> <span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">251</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">252</span>         <span class="n">content</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lines</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>     <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_chunk</span><span class="p">:</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_cpuenv\lib\site-packages\pandas\io\parsers\python_parser.py:1127,</span> in <span class="ni">PythonParser._get_lines</span><span class="nt">(self, rows)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1123</span> <span class="k">while</span> <span class="n">row_ct</span> <span class="o">&lt;</span> <span class="n">rows</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1124</span>     <span class="c1"># assert for mypy, data is Iterator[str] or None, would</span>
+<span class="g g-Whitespace">   </span><span class="mi">1125</span>     <span class="c1"># error in next</span>
+<span class="g g-Whitespace">   </span><span class="mi">1126</span>     <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1127</span>     <span class="n">new_row</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1128</span>     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">skipfunc</span><span class="p">(</span><span class="n">offset</span> <span class="o">+</span> <span class="n">row_index</span><span class="p">):</span>
+<span class="g g-Whitespace">   </span><span class="mi">1129</span>         <span class="n">row_ct</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="nn">File ~\miniconda3\envs\ml_cpuenv\lib\codecs.py:319,</span> in <span class="ni">BufferedIncrementalDecoder.decode</span><span class="nt">(self, input, final)</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span> <span class="k">def</span><span class="w"> </span><span class="nf">_buffer_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">errors</span><span class="p">,</span> <span class="n">final</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>     <span class="c1"># Overwrite this method in subclasses: It must decode input</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>     <span class="c1"># and return an (output, length consumed) tuple</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span>     <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+<span class="ne">--&gt; </span><span class="mi">319</span> <span class="k">def</span><span class="w"> </span><span class="nf">decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>     <span class="c1"># decode input (taking the buffer into account)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">+</span> <span class="nb">input</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">consumed</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_decode</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">,</span> <span class="n">final</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exploracion-de-datos-price">
+<h2>Exploración de datos - Price<a class="headerlink" href="#exploracion-de-datos-price" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;coerce&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+
+<span class="c1"># Density hist (1–99%)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">quantile</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">s</span><span class="p">[(</span><span class="n">s</span><span class="o">&gt;=</span><span class="n">lo</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">s</span><span class="o">&lt;=</span><span class="n">hi</span><span class="p">)],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Price distribution (density, 1–99%)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Log10 hist</span>
+<span class="n">s_pos</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">s</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">s_pos</span><span class="p">),</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;log10(price) distribution&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;log10(price)&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Density&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Boxplot without fliers</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">vert</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">showfliers</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;price boxplot (no outliers)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ab4c77e25032a4820baec0e2fb490d20dc594dc9de52b2ca5f0e71237d4d7d39.png" src="_images/ab4c77e25032a4820baec0e2fb490d20dc594dc9de52b2ca5f0e71237d4d7d39.png" />
+<img alt="_images/e833de57ceae5d4edfbc6827e7bcf9a4a1ff68c8edf154f293808adda408c82d.png" src="_images/e833de57ceae5d4edfbc6827e7bcf9a4a1ff68c8edf154f293808adda408c82d.png" />
+<img alt="_images/3bb1129e02345ab3c58ddf776b08f3912057c7004868a1a9865b1c84679b5a6d.png" src="_images/3bb1129e02345ab3c58ddf776b08f3912057c7004868a1a9865b1c84679b5a6d.png" />
+</div>
+</div>
+<p>De la primera gráfica, se tiene que la distribución de price está claramente sesgada a la derecha: la mayor concentración de autos se ubica entre los 5000 y 15000 USD, y la frecuencia disminuye conforme sube el precio, dejando una cola larga que alcanza valores por encima de 60000 USD. Se observan pequeños picos locales, coherentes con distintos segmentos del mercado.</p>
+<p>En la segunda gráfica, al tomar log10(price) la distribución se vuelve mucho más simétrica y casi gaussiana, concentrada alrededor de 4 a 4.4 en log10, es decir, precios de decenas de miles (aprox. 10000–25000). La transformación reduce la cola derecha que se da en escala original y deja unos pocos valores atípicos muy bajos (log10 &lt; 3, precios de pocos miles)</p>
+<p>Finalmente, el boxplot (sin atípicos dibujados) confirma una asimetría positiva: la mediana ronda los 15000 USD, con el 50 % central entre aproximadamente 8000 y 26000 - 28000. El bigote derecho es mucho más largo que el izquierdo y llega cerca de ~55–60 k, reflejando la cola larga de precios altos; el izquierdo cae hacia valores cercanos a 1000 y 2000, se tiene entonces mucha concentración en rangos medios-bajos y pocos autos muy caros que alargan la cola.</p>
+</section>
+<section id="subset-de-20000-datos-y-splits-training-testing">
+<h2>Subset de 20000 datos y splits (Training - Testing)<a class="headerlink" href="#subset-de-20000-datos-y-splits-training-testing" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">StratifiedShuffleSplit</span><span class="p">,</span> <span class="n">train_test_split</span>
+
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;manufacturer&#39;</span><span class="p">,</span><span class="s1">&#39;model&#39;</span><span class="p">,</span><span class="s1">&#39;type&#39;</span><span class="p">,</span><span class="s1">&#39;transmission&#39;</span><span class="p">,</span><span class="s1">&#39;fuel&#39;</span><span class="p">,</span><span class="s1">&#39;drive&#39;</span><span class="p">,</span><span class="s1">&#39;condition&#39;</span><span class="p">,</span><span class="s1">&#39;size&#39;</span><span class="p">,</span><span class="s1">&#39;state&#39;</span><span class="p">,</span><span class="s1">&#39;region&#39;</span><span class="p">]</span>
+<span class="n">numeric_features</span>     <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;cylinders_num&#39;</span><span class="p">,</span><span class="s1">&#39;odometer&#39;</span><span class="p">]</span>
+
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">categorical_features</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">numeric_features</span>     <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">numeric_features</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+
+<span class="n">X_full</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">categorical_features</span> <span class="o">+</span> <span class="n">numeric_features</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y_full_price</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y_full_hd</span>    <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;HighDemand&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">TOTAL</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">TOTAL_SUBSET</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_full</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">y_full_hd</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">sss</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="n">TOTAL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+    <span class="n">idx</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">sss</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X_full</span><span class="p">,</span> <span class="n">y_full_hd</span><span class="p">))</span>
+    <span class="n">X_small</span> <span class="o">=</span> <span class="n">X_full</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">y_price_small</span> <span class="o">=</span> <span class="n">y_full_price</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">X_small</span> <span class="o">=</span> <span class="n">X_full</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">TOTAL</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+    <span class="n">y_price_small</span> <span class="o">=</span> <span class="n">y_full_price</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">X_small</span><span class="o">.</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Subset:&quot;</span><span class="p">,</span> <span class="n">X_small</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">X_train_reg</span><span class="p">,</span> <span class="n">X_test_reg</span><span class="p">,</span> <span class="n">y_train_reg</span><span class="p">,</span> <span class="n">y_test_reg</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_small</span><span class="p">,</span> <span class="n">y_price_small</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span>
+<span class="p">)</span>
+
+<span class="n">med_train</span> <span class="o">=</span> <span class="n">y_train_reg</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+<span class="n">y_train_clf</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_train_reg</span> <span class="o">&gt;</span> <span class="n">med_train</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int8&#39;</span><span class="p">)</span>
+<span class="n">y_test_clf</span>  <span class="o">=</span> <span class="p">(</span><span class="n">y_test_reg</span>  <span class="o">&gt;</span> <span class="n">med_train</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int8&#39;</span><span class="p">)</span>
+
+<span class="n">X_train_clf</span><span class="p">,</span> <span class="n">X_test_clf</span> <span class="o">=</span> <span class="n">X_train_reg</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">X_test_reg</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Train shapes:&quot;</span><span class="p">,</span> <span class="n">X_train_reg</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_train_clf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median(train) =&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">med_train</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Subset: (20000, 13)
+Train shapes: (16000, 13) (16000, 13)
+Median(train) = 14999.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="seccion-3-modelos">
+<h2>3) Sección 3. Modelos<a class="headerlink" href="#seccion-3-modelos" title="Link to this heading">#</a></h2>
+<p>En esta sección, en primer lugar se desarrolla lo correspondiente a los modelos de regresión: Ridge y Lasso y de clasificación con regresión logística, posteriormente se ejecuta knn para regresión y para clasificación.</p>
+</section>
+<section id="preprocesamiento-imputacion-de-datos-ohe-scaler">
+<h2>Preprocesamiento (imputación de datos + OHE + scaler)<a class="headerlink" href="#preprocesamiento-imputacion-de-datos-ohe-scaler" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="n">ohe</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">cat_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;ohe&#39;</span><span class="p">,</span> <span class="n">ohe</span><span class="p">)])</span>
+<span class="n">num_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">())])</span>
+
+<span class="n">preprocess</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">([(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">cat_pipe</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
+                                <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">num_pipe</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pipelines-gridsearchcv">
+<h2>Pipelines &amp; GridSearchCV<a class="headerlink" href="#pipelines-gridsearchcv" title="Link to this heading">#</a></h2>
+<p>Ridge, Lasso, Regresión logística</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ridge_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;preprocess&#39;</span><span class="p">,</span> <span class="n">preprocess</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">))])</span>
+<span class="n">lasso_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;preprocess&#39;</span><span class="p">,</span> <span class="n">preprocess</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">))])</span>
+<span class="n">logreg_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;preprocess&#39;</span><span class="p">,</span> <span class="n">preprocess</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">))])</span>
+
+<span class="n">ridge_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;model__alpha&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)}</span>
+<span class="n">lasso_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;model__alpha&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)}</span>
+<span class="n">logreg_grid</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;model__C&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s1">&#39;model__penalty&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;l2&#39;</span><span class="p">],</span> <span class="s1">&#39;model__solver&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;lbfgs&#39;</span><span class="p">]}</span>
+
+<span class="n">cv_reg</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">cv_clf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+
+<span class="n">ridge_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">ridge_pipe</span><span class="p">,</span> <span class="n">ridge_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_reg</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">lasso_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">lasso_pipe</span><span class="p">,</span> <span class="n">lasso_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_reg</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">logreg_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">logreg_pipe</span><span class="p">,</span> <span class="n">logreg_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_clf</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="training">
+<h2>Training<a class="headerlink" href="#training" title="Link to this heading">#</a></h2>
+<p>Ridge, Lasso, Regresión logística</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">();</span> <span class="n">ridge_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_reg</span><span class="p">,</span> <span class="n">y_train_reg</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ridge in&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+<span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">();</span> <span class="n">lasso_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_reg</span><span class="p">,</span> <span class="n">y_train_reg</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lasso in&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+<span class="n">t0</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">();</span> <span class="n">logreg_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_clf</span><span class="p">,</span> <span class="n">y_train_clf</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;LogReg in&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best Ridge:&#39;</span><span class="p">,</span> <span class="n">ridge_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">,</span> <span class="s1">&#39;=&gt; MAE_cv:&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">ridge_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best Lasso:&#39;</span><span class="p">,</span> <span class="n">lasso_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">,</span> <span class="s1">&#39;=&gt; MAE_cv:&#39;</span><span class="p">,</span> <span class="o">-</span><span class="n">lasso_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best LogReg:&#39;</span><span class="p">,</span> <span class="n">logreg_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">,</span> <span class="s1">&#39;=&gt; F1_cv:&#39;</span><span class="p">,</span>  <span class="n">logreg_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 3 folds for each of 5 candidates, totalling 15 fits
+[CV] END ..................................model__alpha=0.01; total time=   5.4s
+[CV] END ..................................model__alpha=0.01; total time=   3.5s
+[CV] END ..................................model__alpha=0.01; total time=   3.3s
+[CV] END ...................................model__alpha=0.1; total time=   2.8s
+[CV] END ...................................model__alpha=0.1; total time=   3.0s
+[CV] END ...................................model__alpha=0.1; total time=   3.2s
+[CV] END ...................................model__alpha=1.0; total time=   2.7s
+[CV] END ...................................model__alpha=1.0; total time=   2.8s
+[CV] END ...................................model__alpha=1.0; total time=   3.3s
+[CV] END ..................................model__alpha=10.0; total time=   3.1s
+[CV] END ..................................model__alpha=10.0; total time=   3.0s
+[CV] END ..................................model__alpha=10.0; total time=   3.1s
+[CV] END .................................model__alpha=100.0; total time=   2.9s
+[CV] END .................................model__alpha=100.0; total time=   2.8s
+[CV] END .................................model__alpha=100.0; total time=   2.8s
+Ridge in 54.9 s
+Fitting 3 folds for each of 5 candidates, totalling 15 fits
+[CV] END ..................................model__alpha=0.01; total time= 4.4min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Laura\miniconda3\envs\ml_cpuenv\lib\site-packages\sklearn\linear_model\_coordinate_descent.py:695: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 1.030e+10, tolerance: 4.220e+08
+  model = cd_fast.enet_coordinate_descent(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END ..................................model__alpha=0.01; total time= 7.5min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\Laura\miniconda3\envs\ml_cpuenv\lib\site-packages\sklearn\linear_model\_coordinate_descent.py:695: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations, check the scale of the features or consider increasing regularisation. Duality gap: 8.145e+10, tolerance: 4.300e+08
+  model = cd_fast.enet_coordinate_descent(
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END ..................................model__alpha=0.01; total time= 7.3min
+[CV] END ...................................model__alpha=0.1; total time= 1.2min
+[CV] END ...................................model__alpha=0.1; total time= 1.2min
+[CV] END ...................................model__alpha=0.1; total time= 1.0min
+[CV] END ...................................model__alpha=1.0; total time=  23.3s
+[CV] END ...................................model__alpha=1.0; total time=  15.2s
+[CV] END ...................................model__alpha=1.0; total time=  15.3s
+[CV] END ..................................model__alpha=10.0; total time=   2.6s
+[CV] END ..................................model__alpha=10.0; total time=   4.8s
+[CV] END ..................................model__alpha=10.0; total time=   7.9s
+[CV] END .................................model__alpha=100.0; total time=   1.5s
+[CV] END .................................model__alpha=100.0; total time=   1.6s
+[CV] END .................................model__alpha=100.0; total time=   1.4s
+Lasso in 1460.8 s
+Fitting 3 folds for each of 5 candidates, totalling 15 fits
+[CV] END model__C=0.01, model__penalty=l2, model__solver=lbfgs; total time=   2.1s
+[CV] END model__C=0.01, model__penalty=l2, model__solver=lbfgs; total time=   1.4s
+[CV] END model__C=0.01, model__penalty=l2, model__solver=lbfgs; total time=   1.4s
+[CV] END model__C=0.1, model__penalty=l2, model__solver=lbfgs; total time=   1.9s
+[CV] END model__C=0.1, model__penalty=l2, model__solver=lbfgs; total time=   1.8s
+[CV] END model__C=0.1, model__penalty=l2, model__solver=lbfgs; total time=   2.0s
+[CV] END model__C=1.0, model__penalty=l2, model__solver=lbfgs; total time=   3.8s
+[CV] END model__C=1.0, model__penalty=l2, model__solver=lbfgs; total time=   3.5s
+[CV] END model__C=1.0, model__penalty=l2, model__solver=lbfgs; total time=   4.1s
+[CV] END model__C=10.0, model__penalty=l2, model__solver=lbfgs; total time=   8.5s
+[CV] END model__C=10.0, model__penalty=l2, model__solver=lbfgs; total time=   8.2s
+[CV] END model__C=10.0, model__penalty=l2, model__solver=lbfgs; total time=   8.6s
+[CV] END model__C=100.0, model__penalty=l2, model__solver=lbfgs; total time=  11.8s
+[CV] END model__C=100.0, model__penalty=l2, model__solver=lbfgs; total time=  14.7s
+[CV] END model__C=100.0, model__penalty=l2, model__solver=lbfgs; total time=  17.8s
+LogReg in 102.2 s
+Best Ridge: {&#39;model__alpha&#39;: 1.0} =&gt; MAE_cv: 5953.766571632191
+Best Lasso: {&#39;model__alpha&#39;: 1.0} =&gt; MAE_cv: 5953.092464259666
+Best LogReg: {&#39;model__C&#39;: 1.0, &#39;model__penalty&#39;: &#39;l2&#39;, &#39;model__solver&#39;: &#39;lbfgs&#39;} =&gt; F1_cv: 0.8795647239911037
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Recuperar best estimators del GridSearch ya entrenado</span>
+<span class="n">best_ridge</span>  <span class="o">=</span> <span class="n">ridge_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">best_lasso</span>  <span class="o">=</span> <span class="n">lasso_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">best_logreg</span> <span class="o">=</span> <span class="n">logreg_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evaluacion-regresion">
+<h2>Evaluación - Regresión<a class="headerlink" href="#evaluacion-regresion" title="Link to this heading">#</a></h2>
+<p>Ridge y Lasso</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">eval_regression</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">Xte</span><span class="p">,</span> <span class="n">yte</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;model&#39;</span><span class="p">):</span>
+    <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">Xte</span><span class="p">)</span>
+    <span class="n">mae</span> <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">yte</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+    <span class="c1"># Compatibilidad con versiones viejas de sklearn</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">yte</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">yte</span><span class="p">,</span> <span class="n">pred</span><span class="p">))</span>
+    <span class="n">r2</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">yte</span><span class="p">,</span> <span class="n">pred</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">] MAE=</span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> | RMSE=</span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1"> | R2=</span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Gráfico</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">yte</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+    <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">yte</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">yte</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">],</span> <span class="p">[</span><span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Predicted vs Actual — </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Actual&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Predicted&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--- Ridge ---&#39;</span><span class="p">);</span> <span class="n">eval_regression</span><span class="p">(</span><span class="n">best_ridge</span><span class="p">,</span> <span class="n">X_test_reg</span><span class="p">,</span> <span class="n">y_test_reg</span><span class="p">,</span> <span class="s1">&#39;Ridge&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--- Lasso ---&#39;</span><span class="p">);</span> <span class="n">eval_regression</span><span class="p">(</span><span class="n">best_lasso</span><span class="p">,</span> <span class="n">X_test_reg</span><span class="p">,</span> <span class="n">y_test_reg</span><span class="p">,</span> <span class="s1">&#39;Lasso&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Ridge ---
+[Ridge] MAE=5472.59 | RMSE=8626.07 | R2=0.637
+</pre></div>
+</div>
+<img alt="_images/5db87bacbbaebe44cd4e40767ce5ae23f00562f01045ffaee1b23e0935c9678d.png" src="_images/5db87bacbbaebe44cd4e40767ce5ae23f00562f01045ffaee1b23e0935c9678d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Lasso ---
+[Lasso] MAE=5660.99 | RMSE=8884.93 | R2=0.614
+</pre></div>
+</div>
+<img alt="_images/61bb33e4a27387eb9df0485f09c6f5bc758bd28ec0b2cfeaae1ad3177d8e2ada.png" src="_images/61bb33e4a27387eb9df0485f09c6f5bc758bd28ec0b2cfeaae1ad3177d8e2ada.png" />
+</div>
+</div>
+</section>
+<section id="evaluacion-clasificacion">
+<h2>Evaluación - Clasificación<a class="headerlink" href="#evaluacion-clasificacion" title="Link to this heading">#</a></h2>
+<p>Regresión logística</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_logreg</span> <span class="o">=</span> <span class="n">logreg_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">best_logreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_clf</span><span class="p">)</span>
+<span class="n">y_prob</span> <span class="o">=</span> <span class="n">best_logreg</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_clf</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">prec</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rec</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">f1</span>  <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Accuracy=</span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> | Precision=</span><span class="si">{</span><span class="n">prec</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> | Recall=</span><span class="si">{</span><span class="n">rec</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> | F1=</span><span class="si">{</span><span class="n">f1</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> | ROC AUC=</span><span class="si">{</span><span class="n">auc</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="o">=</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span> <span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values_format</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix — Logistic Regression&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span> <span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">best_logreg</span><span class="p">,</span> <span class="n">X_test_clf</span><span class="p">,</span> <span class="n">y_test_clf</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ROC Curve — Logistic Regression&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Accuracy=0.891 | Precision=0.893 | Recall=0.889 | F1=0.891 | ROC AUC=0.955
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="_images/744c2cc1e930c1d38e04e5828a16a94a9579331a6fdd7cd71d0aef90a29ac80d.png" src="_images/744c2cc1e930c1d38e04e5828a16a94a9579331a6fdd7cd71d0aef90a29ac80d.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="_images/12717e08c90f301d7c59cba0e2568adaa081816444c63773f8a1d08f82ffa661.png" src="_images/12717e08c90f301d7c59cba0e2568adaa081816444c63773f8a1d08f82ffa661.png" />
+</div>
+</div>
+</section>
+<section id="preprocesamiento-imputacion-de-datos-ohe-maxabsscaler-pipeline-y-gridsearchcv">
+<h2>Preprocesamiento (Imputación de datos + OHE + MaxAbsScaler), Pipeline y GridSearchCV<a class="headerlink" href="#preprocesamiento-imputacion-de-datos-ohe-maxabsscaler-pipeline-y-gridsearchcv" title="Link to this heading">#</a></h2>
+<p>KNN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># === KNN Pipelines (mismos splits) </span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsRegressor</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">MaxAbsScaler</span><span class="p">,</span> <span class="n">OneHotEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.impute</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColumnTransformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">KFold</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+
+<span class="c1"># OneHotEncoder </span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ohe_sparse</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">sparse_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="n">ohe_sparse</span> <span class="o">=</span> <span class="n">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">cat_knn</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;most_frequent&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;ohe&#39;</span><span class="p">,</span> <span class="n">ohe_sparse</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1"># MaxAbsScaler mantiene forma esparsa (mejor para KNN con OHE)</span>
+<span class="n">num_knn</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;imputer&#39;</span><span class="p">,</span> <span class="n">SimpleImputer</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s1">&#39;scaler&#39;</span><span class="p">,</span> <span class="n">MaxAbsScaler</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="c1"># Fuerza salida esparsa si hay partes esparsas</span>
+<span class="n">preprocess_knn</span> <span class="o">=</span> <span class="n">ColumnTransformer</span><span class="p">(</span>
+    <span class="n">transformers</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="n">cat_knn</span><span class="p">,</span> <span class="n">categorical_features</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;num&#39;</span><span class="p">,</span> <span class="n">num_knn</span><span class="p">,</span> <span class="n">numeric_features</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">sparse_threshold</span><span class="o">=</span><span class="mf">1.0</span>  <span class="c1"># intenta devolver CSR</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="training-regresion">
+<h2>Training - Regresión<a class="headerlink" href="#training-regresion" title="Link to this heading">#</a></h2>
+<p>Regresión KNN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ------------------ REGRESIÓN KNN ------------------</span>
+<span class="n">knn_reg_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;preprocess&#39;</span><span class="p">,</span> <span class="n">preprocess_knn</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">KNeighborsRegressor</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="n">knn_reg_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;model__n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+    <span class="s1">&#39;model__weights&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="s1">&#39;distance&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;model__p&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># 1=Manhattan, 2=Euclid</span>
+<span class="p">}</span>
+
+<span class="n">cv_reg_knn</span> <span class="o">=</span> <span class="n">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">knn_reg_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">knn_reg_pipe</span><span class="p">,</span> <span class="n">knn_reg_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_reg_knn</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_absolute_error&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting KNN Regressor...&quot;</span><span class="p">)</span>
+<span class="n">knn_reg_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_reg</span><span class="p">,</span> <span class="n">y_train_reg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best KNN-REG:&quot;</span><span class="p">,</span> <span class="n">knn_reg_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">,</span> <span class="s2">&quot;=&gt; MAE_cv:&quot;</span><span class="p">,</span> <span class="o">-</span><span class="n">knn_reg_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting KNN Regressor...
+Fitting 3 folds for each of 12 candidates, totalling 36 fits
+[CV] END model__n_neighbors=5, model__p=1, model__weights=uniform; total time=   6.9s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=uniform; total time=   2.4s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=uniform; total time=   2.2s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=distance; total time=   1.5s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=distance; total time=   1.7s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=uniform; total time=   3.1s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=distance; total time=   3.0s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=distance; total time=   3.0s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=uniform; total time=   1.6s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=uniform; total time=   1.6s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=uniform; total time=   1.5s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=distance; total time=   1.7s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=distance; total time=   1.7s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=uniform; total time=   3.3s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=uniform; total time=   3.1s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=uniform; total time=   3.0s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=distance; total time=   3.0s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=uniform; total time=   1.6s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=uniform; total time=   1.5s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=uniform; total time=   1.6s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=distance; total time=   1.5s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=uniform; total time=   3.0s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=uniform; total time=   3.0s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=distance; total time=   2.9s
+Best KNN-REG: {&#39;model__n_neighbors&#39;: 5, &#39;model__p&#39;: 1, &#39;model__weights&#39;: &#39;uniform&#39;} =&gt; MAE_cv: 6949.54019768249
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Evaluación - Regresión<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>KNN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ------------------ Evaluación Regresión (KNN) ------------------</span>
+<span class="n">best_knn_reg</span> <span class="o">=</span> <span class="n">knn_reg_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">eval_regression</span><span class="p">(</span><span class="n">best_knn_reg</span><span class="p">,</span> <span class="n">X_test_reg</span><span class="p">,</span> <span class="n">y_test_reg</span><span class="p">,</span> <span class="s1">&#39;KNN Regressor&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[KNN Regressor] MAE=6358.98 | RMSE=11255.99 | R2=0.381
+</pre></div>
+</div>
+<img alt="_images/b9204dd0e7905fb6b869c8c0fe4b785cbaff56550a71def645b546871e17391f.png" src="_images/b9204dd0e7905fb6b869c8c0fe4b785cbaff56550a71def645b546871e17391f.png" />
+</div>
+</div>
+</section>
+<section id="training-clasificacion">
+<h2>Training - Clasificación<a class="headerlink" href="#training-clasificacion" title="Link to this heading">#</a></h2>
+<p>KNN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ------------------ CLASIFICACIÓN KNN ------------------</span>
+<span class="n">knn_clf_pipe</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">&#39;preprocess&#39;</span><span class="p">,</span> <span class="n">preprocess_knn</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="n">KNeighborsClassifier</span><span class="p">())</span>
+<span class="p">])</span>
+
+<span class="n">knn_clf_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;model__n_neighbors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span>
+    <span class="s1">&#39;model__weights&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span> <span class="s1">&#39;distance&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;model__p&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">cv_clf_knn</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">RANDOM_STATE</span><span class="p">)</span>
+<span class="n">knn_clf_search</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span>
+    <span class="n">knn_clf_pipe</span><span class="p">,</span> <span class="n">knn_clf_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">cv_clf_knn</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;f1&#39;</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting KNN Classifier...&quot;</span><span class="p">)</span>
+<span class="n">knn_clf_search</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_clf</span><span class="p">,</span> <span class="n">y_train_clf</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best KNN-CLF:&quot;</span><span class="p">,</span> <span class="n">knn_clf_search</span><span class="o">.</span><span class="n">best_params_</span><span class="p">,</span> <span class="s2">&quot;=&gt; F1_cv:&quot;</span><span class="p">,</span> <span class="n">knn_clf_search</span><span class="o">.</span><span class="n">best_score_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting KNN Classifier...
+Fitting 3 folds for each of 12 candidates, totalling 36 fits
+[CV] END model__n_neighbors=5, model__p=1, model__weights=uniform; total time=   2.4s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=uniform; total time=   2.4s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=uniform; total time=   2.3s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=distance; total time=   2.2s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=distance; total time=   1.5s
+[CV] END model__n_neighbors=5, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=uniform; total time=   2.8s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=5, model__p=2, model__weights=distance; total time=   2.8s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=uniform; total time=   1.5s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=uniform; total time=   1.6s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=uniform; total time=   1.7s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=11, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=uniform; total time=   3.0s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=uniform; total time=   3.0s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=11, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=uniform; total time=   1.6s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=uniform; total time=   1.5s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=uniform; total time=   1.7s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=21, model__p=1, model__weights=distance; total time=   1.6s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=uniform; total time=   2.9s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=distance; total time=   3.0s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=distance; total time=   2.9s
+[CV] END model__n_neighbors=21, model__p=2, model__weights=distance; total time=   3.0s
+Best KNN-CLF: {&#39;model__n_neighbors&#39;: 11, &#39;model__p&#39;: 1, &#39;model__weights&#39;: &#39;uniform&#39;} =&gt; F1_cv: 0.8097361734853264
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id2">
+<h2>Evaluación - Clasificación<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>KNN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Evaluación Clasificación (KNN)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">,</span> <span class="n">RocCurveDisplay</span>
+<span class="p">)</span>
+
+<span class="n">best_knn_clf</span> <span class="o">=</span> <span class="n">knn_clf_search</span><span class="o">.</span><span class="n">best_estimator_</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">best_knn_clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_clf</span><span class="p">)</span>
+<span class="n">y_prob</span> <span class="o">=</span> <span class="n">best_knn_clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test_clf</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">acc</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">prec</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rec</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">f1</span>  <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;KNN-CLF → Accuracy=</span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> | Precision=</span><span class="si">{</span><span class="n">prec</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> | Recall=</span><span class="si">{</span><span class="n">rec</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> | F1=</span><span class="si">{</span><span class="n">f1</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1"> | ROC AUC=</span><span class="si">{</span><span class="n">auc</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="o">=</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test_clf</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span> <span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">values_format</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Matriz de confusión — KNN&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">();</span> <span class="n">RocCurveDisplay</span><span class="o">.</span><span class="n">from_estimator</span><span class="p">(</span><span class="n">best_knn_clf</span><span class="p">,</span> <span class="n">X_test_clf</span><span class="p">,</span> <span class="n">y_test_clf</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Curva ROC — KNN&#39;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>KNN-CLF → Accuracy=0.826 | Precision=0.829 | Recall=0.821 | F1=0.825 | ROC AUC=0.907
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="_images/388576603d261a362e9ccbb783a54bf9bd32cedfbf985d5e4c600ff0ab843c5c.png" src="_images/388576603d261a362e9ccbb783a54bf9bd32cedfbf985d5e4c600ff0ab843c5c.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="_images/33be03d9304eb11429dd8b57242ab8945047f511a7f978f980073358bb8d4958.png" src="_images/33be03d9304eb11429dd8b57242ab8945047f511a7f978f980073358bb8d4958.png" />
+</div>
+</div>
+</section>
+<section id="seccion-4-evaluacion-y-metricas">
+<h2>Sección 4. Evaluación y Métricas<a class="headerlink" href="#seccion-4-evaluacion-y-metricas" title="Link to this heading">#</a></h2>
+<p>Esta sección genera <strong>dos tablas</strong> con métricas para los modelos entrenados:</p>
+<ul class="simple">
+<li><p><strong>Regresión:</strong> Ridge, Lasso, KNN Regressor → MAE, RMSE, R²</p></li>
+<li><p><strong>Clasificación:</strong> Regresión Logística, KNN Classifier → Accuracy, Precision, Recall, F1, ROC AUC</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span><span class="o">,</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span><span class="o">,</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">joblib</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span>
+    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<span class="p">)</span>
+
+<span class="c1"># ---------- Helpers ----------</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_rmse</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">squared</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">))</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">eval_reg_metrics</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">yhat</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;MAE&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">)),</span>
+            <span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">_rmse</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">)),</span>
+            <span class="s1">&#39;R2&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yhat</span><span class="p">))}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">eval_clf_metrics</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">yp</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ps</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">auc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">ps</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">auc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yp</span><span class="p">)),</span>
+            <span class="s1">&#39;Precision&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span>
+            <span class="s1">&#39;Recall&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span>
+            <span class="s1">&#39;F1&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">yp</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">)),</span>
+            <span class="s1">&#39;ROC AUC&#39;</span><span class="p">:</span> <span class="n">auc</span><span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_model</span><span class="p">(</span><span class="n">best_var</span><span class="p">,</span> <span class="n">search_var</span><span class="p">,</span> <span class="n">joblib_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># 1) variable best_* en memoria</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">best_var</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">m</span>
+    <span class="c1"># 2) best_estimator_ desde GridSearch</span>
+    <span class="k">if</span> <span class="n">search_var</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">globals</span><span class="p">()[</span><span class="n">search_var</span><span class="p">]</span><span class="o">.</span><span class="n">best_estimator_</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="c1"># 3) archivo .joblib</span>
+    <span class="k">if</span> <span class="n">joblib_path</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">joblib_path</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">load</span><span class="p">(</span><span class="n">joblib_path</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="c1"># ---------- Recuperar modelos disponibles ----------</span>
+<span class="n">ridge</span>   <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;best_ridge&#39;</span><span class="p">,</span>  <span class="s1">&#39;ridge_search&#39;</span><span class="p">,</span>  <span class="s1">&#39;ridge_price_model.joblib&#39;</span><span class="p">)</span>
+<span class="n">lasso</span>   <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;best_lasso&#39;</span><span class="p">,</span>  <span class="s1">&#39;lasso_search&#39;</span><span class="p">,</span>  <span class="s1">&#39;lasso_price_model.joblib&#39;</span><span class="p">)</span>
+<span class="n">logreg</span>  <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;best_logreg&#39;</span><span class="p">,</span> <span class="s1">&#39;logreg_search&#39;</span><span class="p">,</span> <span class="s1">&#39;logreg_demand_model.joblib&#39;</span><span class="p">)</span>
+<span class="n">knn_reg</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;best_knn_reg&#39;</span><span class="p">,</span><span class="s1">&#39;knn_reg_search&#39;</span><span class="p">,</span><span class="s1">&#39;knn_reg_model.joblib&#39;</span><span class="p">)</span>
+<span class="n">knn_clf</span> <span class="o">=</span> <span class="n">get_model</span><span class="p">(</span><span class="s1">&#39;best_knn_clf&#39;</span><span class="p">,</span><span class="s1">&#39;knn_clf_search&#39;</span><span class="p">,</span><span class="s1">&#39;knn_clf_model.joblib&#39;</span><span class="p">)</span>
+
+<span class="c1"># ---------- Verificar splits requeridos ----------</span>
+<span class="n">missing</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;X_train_reg&quot;</span><span class="p">,</span><span class="s2">&quot;y_train_reg&quot;</span><span class="p">,</span><span class="s2">&quot;X_test_reg&quot;</span><span class="p">,</span><span class="s2">&quot;y_test_reg&quot;</span><span class="p">,</span>
+                       <span class="s2">&quot;X_train_clf&quot;</span><span class="p">,</span><span class="s2">&quot;y_train_clf&quot;</span><span class="p">,</span><span class="s2">&quot;X_test_clf&quot;</span><span class="p">,</span><span class="s2">&quot;y_test_clf&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">()]</span>
+<span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Faltan variables de split:&quot;</span><span class="p">,</span> <span class="n">missing</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ejecuta la celda donde construyes los splits (train/test) y vuelve a correr esta celda.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="c1"># ---------- Tabla: REGRESIÓN ----------</span>
+    <span class="n">reg_models</span> <span class="o">=</span> <span class="p">[(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;Ridge&#39;</span><span class="p">,</span><span class="n">ridge</span><span class="p">),(</span><span class="s1">&#39;Lasso&#39;</span><span class="p">,</span><span class="n">lasso</span><span class="p">),(</span><span class="s1">&#39;KNN Regr&#39;</span><span class="p">,</span><span class="n">knn_reg</span><span class="p">)]</span> <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">reg_rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">reg_models</span><span class="p">:</span>
+        <span class="n">reg_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;Split&#39;</span><span class="p">:</span> <span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">eval_reg_metrics</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">X_train_reg</span><span class="p">,</span> <span class="n">y_train_reg</span><span class="p">)})</span>
+        <span class="n">reg_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;Split&#39;</span><span class="p">:</span> <span class="s1">&#39;Test&#39;</span><span class="p">,</span>  <span class="o">**</span><span class="n">eval_reg_metrics</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">X_test_reg</span><span class="p">,</span>  <span class="n">y_test_reg</span><span class="p">)})</span>
+    <span class="n">reg_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">reg_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span><span class="s1">&#39;Split&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">reg_rows</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">reg_results</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">reg_results</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay modelos de REGRESIÓN disponibles para resumir.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># ---------- Tabla: CLASIFICACIÓN ----------</span>
+    <span class="n">clf_models</span> <span class="o">=</span> <span class="p">[(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">m</span> <span class="ow">in</span> <span class="p">[(</span><span class="s1">&#39;Logistic Reg&#39;</span><span class="p">,</span><span class="n">logreg</span><span class="p">),(</span><span class="s1">&#39;KNN Class&#39;</span><span class="p">,</span><span class="n">knn_clf</span><span class="p">)]</span> <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
+    <span class="n">clf_rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">clf_models</span><span class="p">:</span>
+        <span class="n">clf_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;Split&#39;</span><span class="p">:</span> <span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">eval_clf_metrics</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">X_train_clf</span><span class="p">,</span> <span class="n">y_train_clf</span><span class="p">)})</span>
+        <span class="n">clf_rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s1">&#39;Model&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;Split&#39;</span><span class="p">:</span> <span class="s1">&#39;Test&#39;</span><span class="p">,</span>  <span class="o">**</span><span class="n">eval_clf_metrics</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">X_test_clf</span><span class="p">,</span>  <span class="n">y_test_clf</span><span class="p">)})</span>
+    <span class="n">clf_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">clf_rows</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;Model&#39;</span><span class="p">,</span><span class="s1">&#39;Split&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">if</span> <span class="n">clf_rows</span> <span class="k">else</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">clf_results</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">clf_results</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No hay modelos de CLASIFICACIÓN disponibles para resumir.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># ---------- (Opcional) Exportar ----------</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">reg_results</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">reg_results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;metrics_regression_train_test.csv&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">clf_results</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">clf_results</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;metrics_classification_train_test.csv&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Archivos guardados: metrics_regression_train_test.csv, metrics_classification_train_test.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>MAE</th>
+      <th>RMSE</th>
+      <th>R2</th>
+    </tr>
+    <tr>
+      <th>Model</th>
+      <th>Split</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Ridge</th>
+      <th>Train</th>
+      <td>4463.921</td>
+      <td>10903.947</td>
+      <td>0.650</td>
+    </tr>
+    <tr>
+      <th>Test</th>
+      <td>5472.588</td>
+      <td>8626.067</td>
+      <td>0.637</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Lasso</th>
+      <th>Train</th>
+      <td>5145.118</td>
+      <td>10602.146</td>
+      <td>0.670</td>
+    </tr>
+    <tr>
+      <th>Test</th>
+      <td>5660.992</td>
+      <td>8884.932</td>
+      <td>0.614</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">KNN Regr</th>
+      <th>Train</th>
+      <td>5293.393</td>
+      <td>13234.760</td>
+      <td>0.485</td>
+    </tr>
+    <tr>
+      <th>Test</th>
+      <td>6358.976</td>
+      <td>11255.985</td>
+      <td>0.381</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Accuracy</th>
+      <th>Precision</th>
+      <th>Recall</th>
+      <th>F1</th>
+      <th>ROC AUC</th>
+    </tr>
+    <tr>
+      <th>Model</th>
+      <th>Split</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Logistic Reg</th>
+      <th>Train</th>
+      <td>0.912</td>
+      <td>0.912</td>
+      <td>0.911</td>
+      <td>0.912</td>
+      <td>0.966</td>
+    </tr>
+    <tr>
+      <th>Test</th>
+      <td>0.892</td>
+      <td>0.893</td>
+      <td>0.889</td>
+      <td>0.891</td>
+      <td>0.955</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">KNN Class</th>
+      <th>Train</th>
+      <td>0.857</td>
+      <td>0.863</td>
+      <td>0.849</td>
+      <td>0.856</td>
+      <td>0.938</td>
+    </tr>
+    <tr>
+      <th>Test</th>
+      <td>0.826</td>
+      <td>0.829</td>
+      <td>0.821</td>
+      <td>0.825</td>
+      <td>0.907</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Archivos guardados (si hubo datos): metrics_regression_train_test.csv, metrics_classification_train_test.csv
+</pre></div>
+</div>
+</div>
+</div>
+<p>En la comparación de modelos para predicción de precio, Ridge mostró la mejor generalización: en test obtuvo MAE=5 472.6, RMSE=8 626.1 y R²=0.637, con resultados muy consistentes respecto al train (R²=0.650). Lasso presentó un leve sobreajuste: aunque en train alcanzó R²=0.670, en test bajó a 0.614 (MAE=5 661.0; RMSE=8 884.9), lo que sugiere que la penalización L1 eliminó señales útiles. KNN Regressor quedó claramente por detrás (test R²=0.381, MAE=6 359.0; RMSE=11 256.0), probablemente afectado por la alta dimensionalidad tras el one-hot encoding. En consecuencia, se recomienda Ridge como modelo principal para precio y, para mejoras incrementales, evaluar objetivo logarítmico y reducción de cardinalidad en variables categóricas.</p>
+<p>Por otro lado, en el caso de clasificación binaria, la Regresión Logística es claramente superior al KNN: en test logra Accuracy = 0.892, Precision = 0.893, Recall = 0.889, F1 = 0.891 y ROC-AUC = 0.955, con una caída moderada respecto a train (ROC-AUC = 0.966), lo que indica buena generalización. KNN queda por detrás (test: Accuracy = 0.826, F1 = 0.825, ROC-AUC = 0.907) y muestra menor capacidad de separación entre clases, consistente con la alta dimensionalidad tras el one-hot encoding. En consecuencia, se recomienda Regresión Logística como modelo principal para la demanda, dejando a KNN como referencia; si se requiere ajustar el balance precisión/recobrado, puede afinarse el umbral de decisión o calibrar probabilidades.</p>
+</section>
+<section id="seccion-5-conclusiones">
+<h2>Sección 5. Conclusiones<a class="headerlink" href="#seccion-5-conclusiones" title="Link to this heading">#</a></h2>
+<p>En conclusión se cumplió el objetivo: se construyeron pipelines reproducibles con imputación, escalado y one-hot encoding, y se ajustaron hiperparámetros mediante GridSearchCV con validación cruzada (estratificada en clasificación), evitando fuga de información. El flujo quedó modular, con separación clara entre preparación, entrenamiento y evaluación.</p>
+<p>En síntesis de resultados, para regresión se obtuvo que el modelo Ridge generaliza mejor (MAE ≈ 5 472.6, RMSE ≈ 8 626.1, R² = 0.637), mientras que Lasso rinde un poco menos (R² = 0.614) y KNN queda rezagado (R² = 0.381) por la alta dimensionalidad inducida por el one-hot. En el caso de clasificación, la Regresión Logística supera a KNN (Accuracy = 0.892, F1 = 0.891, ROC-AUC = 0.955); por lo que se recomienda emplear Ridge para precio y Logística para demanda.</p>
+<p>Para futuras iteraciones se recomienda que dado que el precio presenta una distribución marcadamente sesgada a la derecha, transformar el objetivo (p. ej., log1p(price)). , y también se reconoce que se utilizó CV = 3 por restricciones de memoria RAM; ampliar a CV = 5 podría ofrecer estimaciones más estables.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-1-carga-y-exploracion-de-datos">1) Sección 1. Carga y exploración de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#instalacion-de-paquetes">Instalación de paquetes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imports-config">Imports &amp; config</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametros">Parámetros</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ingenieria-de-caracteristicas-highdemand">2) Ingeniería de características (HighDemand)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#limpieza-preliminar-de-datos-y-creacion-de-la-variable-binaria-highdemand">Limpieza preliminar de datos y creación de la variable binaria: HighDemand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploracion-de-datos-price">Exploración de datos - Price</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subset-de-20000-datos-y-splits-training-testing">Subset de 20000 datos y splits (Training - Testing)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-3-modelos">3) Sección 3. Modelos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-imputacion-de-datos-ohe-scaler">Preprocesamiento (imputación de datos + OHE + scaler)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pipelines-gridsearchcv">Pipelines &amp; GridSearchCV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-regresion">Evaluación - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluacion-clasificacion">Evaluación - Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-imputacion-de-datos-ohe-maxabsscaler-pipeline-y-gridsearchcv">Preprocesamiento (Imputación de datos + OHE + MaxAbsScaler), Pipeline y GridSearchCV</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-regresion">Training - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Evaluación - Regresión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-clasificacion">Training - Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Evaluación - Clasificación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-4-evaluacion-y-metricas">Sección 4. Evaluación y Métricas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seccion-5-conclusiones">Sección 5. Conclusiones</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Laura Cardona, Elián Martínez, Evelin Mondul y Luis Pino
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
